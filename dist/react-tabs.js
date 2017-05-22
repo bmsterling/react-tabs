@@ -249,11 +249,12 @@ var TabList = function (_Component) {
     return _possibleConstructorReturn(this, _Component.apply(this, arguments));
   }
 
-  TabList.prototype.render = function render() {
+  TabList.prototype.renderMenuList = function renderMenuList() {
     var _props = this.props,
         children = _props.children,
         className = _props.className,
-        attributes = _objectWithoutProperties(_props, ['children', 'className']);
+        wrapList = _props.wrapList,
+        attributes = _objectWithoutProperties(_props, ['children', 'className', 'wrapList']);
 
     return _react2.default.createElement(
       'ul',
@@ -262,16 +263,37 @@ var TabList = function (_Component) {
     );
   };
 
+  TabList.prototype.renderMenu = function renderMenu() {
+    var wrapList = this.props.wrapList;
+
+
+    if (wrapList) {
+      return _react2.default.createElement(
+        'div',
+        { className: 'react-tabs__menu' },
+        this.renderMenuList()
+      );
+    }
+
+    return this.renderMenuList();
+  };
+
+  TabList.prototype.render = function render() {
+    return this.renderMenu();
+  };
+
   return TabList;
 }(_react.Component);
 
 TabList.defaultProps = {
-  className: 'react-tabs__tab-list'
+  className: 'react-tabs__tab-list',
+  wrapList: false
 };
 exports.default = TabList;
 TabList.propTypes =  true ? {
   children: _propTypes2.default.oneOfType([_propTypes2.default.object, _propTypes2.default.array]),
-  className: _propTypes2.default.oneOfType([_propTypes2.default.string, _propTypes2.default.array, _propTypes2.default.object])
+  className: _propTypes2.default.oneOfType([_propTypes2.default.string, _propTypes2.default.array, _propTypes2.default.object]),
+  wrapList: _propTypes2.default.bool
 } : {};
 
 /***/ }),
