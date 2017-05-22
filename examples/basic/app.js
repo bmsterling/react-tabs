@@ -12,8 +12,10 @@ const App = () => {
         <li>use arrow keys to navigate focused tabs</li>
       </ul>
 
-      <Tabs forceRenderTabPanel={true}>
-        <TabList>
+      <Tabs
+        forceRenderTabPanel={true}
+      >
+        <TabList wrapList={true}>
           <Tab>React</Tab>
           <Tab>Ember</Tab>
           <Tab>Angular</Tab>
